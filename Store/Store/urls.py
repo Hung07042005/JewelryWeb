@@ -29,6 +29,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),  
     path('cart/', include('cart.urls')),
+    path('repurchase/', include('repurchase.urls', namespace='repurchase')),
+    # Thêm URLs cho authentication
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 # Cấu hình đường dẫn media

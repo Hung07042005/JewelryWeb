@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'cart.apps.CartConfig', 
+    'repurchase',  # Thêm app mới
 ]
 
 MIDDLEWARE = [
@@ -74,7 +75,10 @@ ROOT_URLCONF = 'Store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'home/templates/home')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'home/templates/home'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,17 +112,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'home/static/home/images')
 
 # settings.py
 DATABASES = {
-    "default": {
-      #  "ENGINE": "mssql",
-       # "NAME": "CNPM_N2",
-        #"USER": "SA",
-       # "PASSWORD": "yourStrong(!)Password",
-        #"HOST": "localhost",
-        #"PORT": "1433",
-        #'OPTIONS': {  
-         #   'driver': 'ODBC Driver 17 for SQL Server',  # Ensure the driver is installed  
-       # },
-    },
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -157,3 +154,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+
+# Thêm các settings cho login
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
